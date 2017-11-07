@@ -1,6 +1,4 @@
 Chat++ Change Logs
-
-=======
 ## 5.1.20
 * Move to message with [toall] by using shortcut.
 
@@ -13,6 +11,8 @@ Chat++ Change Logs
 ## 5.1.17
 * Fix problem with "Remove user from same rooms" feature
 
+=======
+=================
 ## 5.1.16
 * Fix thumbnails aren't displayed issue. Check [PR#63](https://github.com/wataridori/chatpp/pull/63)
 
