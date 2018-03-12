@@ -295,6 +295,8 @@ function createDataTableText(emo_data) {
 
 function fillDataTable() {
     let emo_info_array = emoDataObjectToArray(emo_info);
+    console.log(emo_info_array);
+    
     createDataTableText(emo_info_array);
     $.each(emo_info_array.slice().reverse(), (key, data) => {
         if (data.data_name !== undefined && data.data_url !== undefined) {

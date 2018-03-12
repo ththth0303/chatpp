@@ -85,6 +85,12 @@ class Emoticon {
                     "role": "tooltip"
                 }
             }).append(
+                $("<ul>", {
+                class:"nav nav-pills",
+                    css: {
+                        "left" :"129px"
+                    }
+                }),
                 $("<div>", {
                     class:"_cwTTTriangle toolTipTriangle toolTipTriangleWhiteBottom",
                     css: {
@@ -115,15 +121,18 @@ class Emoticon {
         });
         $("#_externalEmoticonList").on("mouseenter", "li", (e) => {
             let a = $(e.currentTarget).find("img");
+            
             $("#_externalEmotionDescription").text(a.attr("title"))
         }).on("mouseleave", "li", () => $("#_externalEmotionDescription").text(hint)
-        ).on("click", "li", function() {
+    ).on("click", "li", function() {
+            console.log($(this).find("img"));
             CW.view.key.ctrl || CW.view.key.command ? (u.close(),
             CS.view.sendMessage($(this).find("img").prop("alt"), !0)) : ($("_chatText").focus(),
             CS.view.setChatText($(this).find("img").prop("alt"), !0),
             CW.view.key.shift || u.close())
         })
         $("#externalEmoticonsButton").click((e) => {
+            console.log(this.sorted_emoticons);
             u.open($(e.currentTarget));
         });
     }

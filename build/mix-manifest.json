@@ -1,0 +1,8 @@
+{
+    "/js/internals/all.js": "/js/internals/all.js",
+    "/js/externals/pages.js": "/js/externals/pages.js",
+    "/js/extensions/contentscript.js": "/js/extensions/contentscript.js",
+    "/js/externals/popup.js": "/js/externals/popup.js",
+    "/js/extensions/background.js": "/js/extensions/background.js",
+    "/js/externals/libs.js": "/js/externals/libs.js"
+}

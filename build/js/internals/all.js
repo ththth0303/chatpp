@@ -587,6 +587,8 @@ var Emoticon = function () {
     }, {
         key: "addExternalEmoList",
         value: function addExternalEmoList() {
+            var _this = this;
+
             if ($("#externalEmoticonsButton").length > 0) {
                 return;
             }
@@ -638,7 +640,12 @@ var Emoticon = function () {
                     "left": "160px",
                     "role": "tooltip"
                 }
-            }).append($("<div>", {
+            }).append($("<ul>", {
+                class: "nav nav-pills",
+                css: {
+                    "left": "129px"
+                }
+            }), $("<div>", {
                 class: "_cwTTTriangle toolTipTriangle toolTipTriangleWhiteBottom",
                 css: {
                     "left": "129px"
@@ -665,13 +672,16 @@ var Emoticon = function () {
             });
             $("#_externalEmoticonList").on("mouseenter", "li", function (e) {
                 var a = $(e.currentTarget).find("img");
+
                 $("#_externalEmotionDescription").text(a.attr("title"));
             }).on("mouseleave", "li", function () {
                 return $("#_externalEmotionDescription").text(hint);
             }).on("click", "li", function () {
+                console.log($(this).find("img"));
                 CW.view.key.ctrl || CW.view.key.command ? (u.close(), CS.view.sendMessage($(this).find("img").prop("alt"), !0)) : ($("_chatText").focus(), CS.view.setChatText($(this).find("img").prop("alt"), !0), CW.view.key.shift || u.close());
             });
             $("#externalEmoticonsButton").click(function (e) {
+                console.log(_this.sorted_emoticons);
                 u.open($(e.currentTarget));
             });
         }
@@ -719,7 +729,7 @@ var Emoticon = function () {
     }, {
         key: "addEmoticonText",
         value: function addEmoticonText() {
-            var _this = this;
+            var _this2 = this;
 
             if ($("#emoticonText").length > 0) {
                 return;
@@ -737,7 +747,7 @@ var Emoticon = function () {
             }).append(emoticonText)));
             this.setEmoticonTextLabel();
             $("#emoticonText").click(function () {
-                return _this.toggleEmoticonsStatus();
+                return _this2.toggleEmoticonsStatus();
             });
             this.addErrorText();
         }
@@ -1168,12 +1178,12 @@ var Shortcut = function () {
         key: "isMentionMessage",
         value: function isMentionMessage(message) {
             var regex_reply = new RegExp("\\[.* aid=" + AC.myid + " .*\\]");
-            if (regex_reply.test(message.msg)) {
-                return true;
-            }
-
             var regex_to = new RegExp("\\[To:" + AC.myid + "\\]");
-            return regex_to.test(message.msg);
+            var regex_to_all = new RegExp("\\[toall\\]");
+
+            return [regex_reply, regex_to, regex_to_all].some(function (r) {
+                return r.test(message.msg);
+            });
         }
     }, {
         key: "replyMessage",
